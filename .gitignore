@@ -132,6 +132,7 @@ celerybeat.pid
 .venv
 env/
 venv/
+my-venv/
 ENV/
 env.bak/
 venv.bak/
@@ -169,3 +170,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# CA Cert
+*.crt
+*.pem
+certs/
