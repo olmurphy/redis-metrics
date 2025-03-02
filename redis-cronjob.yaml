@@ -3,18 +3,16 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: redis-metrics-collector
+  namespace: redis-monitoring
 spec:
-  schedule: "*/5 * * * *" # Runs every 5 minutes
+  schedule: "*/1 * * * *" # Runs every 5 minutes
   jobTemplate:
     spec:
       template:
         spec:
           containers:
           - name: redis-metrics
-            image: docker.io/owenmurphy2022v1/redis-metrics # Replace with your docker image
-            args:
-            - "--redis-url=$(REDIS_URL)"
-            - "--redis-cert-path=/etc/redis-cert/redis.crt"
+            image: docker.io/owenmurphy2022v1/redis-metrics:latest # Replace with your docker image
             env:
             - name: REDIS_URL
               valueFrom:
@@ -29,4 +27,3 @@ spec:
             secret:
               secretName: redis # Name of the secret containing the redis certificate
           restartPolicy: OnFailure
-      restartPolicy: OnFailure

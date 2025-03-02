@@ -10,5 +10,3 @@ COPY . .
 
 CMD ["python", "app.py"]
 
-
-# docker login -u "owenmurphy2022v1" -p "Dotdu2-qukvih-hyhgid" docker.io
