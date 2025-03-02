@@ -1,4 +1,3 @@
-import argparse
 import os
 
 from dotenv import load_dotenv
@@ -9,13 +8,6 @@ from redis_metrics import RedisMetrics
 if __name__ == "__main__":
     load_dotenv()
     logger = get_logger(logger_name="Redis Metrics")
-
-    parser = argparse.ArgumentParser(description="Collect Redis metrics.")
-    parser.add_argument("--redis-url", required=True, help="Redis connection URL.")
-    parser.add_argument(
-        "--redis-cert-path", required=True, help="Path to Redis certificate."
-    )
-    args = parser.parse_args()
 
     redis_config = RedisConfig(  # Initialize RedisConfig
         redis_url=os.environ.get("REDIS_URL"),

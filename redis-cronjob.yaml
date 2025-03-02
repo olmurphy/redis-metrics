@@ -19,6 +19,8 @@ spec:
                 secretKeyRef:
                   name: redis-credentials
                   key: redis-url
+            - name: REDIS_CERT_PATH
+              value: /etc/redis-cert/redis.crt # or whatever the cert file is called.
             volumeMounts:
             - name: redis-cert
               mountPath: /etc/redis-cert
