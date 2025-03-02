@@ -23,8 +23,6 @@ class RedisConfig:
         self.logger: Logger = logger
         self._redis_client = None  # Lazy initialization
         self.max_connections = max_connections
-        print(self.redis_url)
-        print(self.redis_cert_path)
 
     def _create_redis_client(self):
         if not self.redis_url:
