@@ -12,7 +12,7 @@
 ![Created At](https://img.shields.io/github/created-at/olmurphy/redis-metrics?style=for-the-badge
 )
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/owenmurphy2022/)
-
+[![Docker Hub](https://img.shields.io/badge/Docker-Hub-blue?logo=docker&style=for-the-badge)](https://hub.docker.com/repository/docker/owenmurphy2022v1/redis-metrics)
 
 <!-- Improved compatibility of back to top link: See: https://github.com/olmurphy/redis-metrics/pull/73 -->
 <a id="readme-top"></a>
