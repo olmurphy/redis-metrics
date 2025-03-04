@@ -1,4 +1,4 @@
-[![Last Commit](https://img.shields.io/github/last-commit/olmurphy/redis-metrics?style=for-the-badge)](https://github.com/olmurphy/redis-metrics/master)
+[![Last Commit](https://img.shields.io/github/last-commit/olmurphy/redis-metrics?style=for-the-badge)](https://github.com/olmurphy/redis-metrics/main)
 [![Contributors](https://img.shields.io/github/contributors/olmurphy/redis-metrics?style=for-the-badge)](https://github.com/olmurphy/redis-metrics/graphs/contributors)
 [![Commit Activity](https://img.shields.io/github/commit-activity/y/olmurphy/redis-metrics?style=for-the-badge)](https://github.com/olmurphy/redis-metrics/graphs/commit-activity)
 [![Repo Size](https://img.shields.io/github/repo-size/olmurphy/redis-metrics?style=for-the-badge)](https://github.com/olmurphy/redis-metrics)
