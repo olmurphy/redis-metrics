@@ -98,16 +98,10 @@ To run this Redis metrics application locally, follow these steps:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/olmurphy/redis-metrics.git](https://github.com/olmurphy/redis-metrics.git)
+    git clone https://github.com/olmurphy/redis-metrics.git
     cd redis-metrics
     ```
-
-2.  **Build the Docker Image:**
-    ```bash
-    docker build -t redis-metrics-app .
-    ```
-
-3.  **Set Environment Variables:**
+2.  **Set Environment Variables:**
     * Create a `.env` file in the project's root directory.
     * Add your Redis connection details and certificate path, encoded in base64. Ensure the certificate is properly encoded.
         ```
@@ -115,6 +109,11 @@ To run this Redis metrics application locally, follow these steps:
         REDIS_CERT_PATH=/app/redis_cert.b64 #This path is relative to the docker container.
         ```
     * Place your base64 encoded certificate into the root directory of the project, and name it redis_cert.b64
+
+3.  **Build the Docker Image:**
+    ```bash
+    docker build -t redis-metrics-app .
+    ```
 
 4.  **Run the Docker Container:**
     ```bash
@@ -158,7 +157,7 @@ To run this Redis metrics application locally, follow these steps:
 
 5.  **Run the Application:**
     ```bash
-    python app.py --redis-url "$REDIS_URL" --redis-cert-path "$REDIS_CERT_PATH"
+    python src/app.py
     ```
     * Replace `"$REDIS_URL"` and `"$REDIS_CERT_PATH"` with your actual environment variables.
 
@@ -176,15 +175,108 @@ To run this Redis metrics application locally, follow these steps:
 
 ## Usage
 
-After installation, the application will provide a dashboard displaying key Redis metrics such as:
+## Usage
 
-* Connected clients
-* Memory usage
-* Key space hits/misses
-* Command statistics
+After installation, the application will provide a comprehensive dashboard displaying real-time Redis metrics, updated based on the data collected by scheduled cron jobs. This dashboard will include the following key areas and metrics:
 
-You can navigate through different sections of the dashboard to view specific metrics and analyze Redis performance. The application may also allow for configuration of metric refresh intervals and alert thresholds.
+**Connections:**
 
+* **Connected Clients:** The current number of active client connections (e.g., `43`).
+* **Connection Errors:** Number of connection errors encountered.
+* **Connection Rate:** The rate of new connections.
+* **Rejected Connections:** Number of connections rejected by the server.
+
+**Memory Usage:**
+
+* **Used Memory:** The total amount of memory currently used by Redis (e.g., `58228616` bytes).
+* **Used Memory Peak:** The highest amount of memory used by Redis since startup.
+* **Memory Fragmentation Ratio:** The ratio between `used_memory_rss` and `used_memory`, indicating memory fragmentation.
+* **Evicted Keys:** The number of keys evicted due to memory limits.
+
+**Performance:**
+
+* **Latency:** The average latency of Redis commands (e.g., `52.28090286254883`).
+* **Commands Per Second:** The rate of commands processed by Redis (e.g., `49`).
+* **Cache Hit Ratio:** The percentage of successful key lookups (e.g., `37.608475700526064%`).
+* **Total Commands Processed:** The total number of commands processed since startup (e.g., `9214533`).
+* **Instantaneous Ops Per Sec:** The current number of operations per second.
+* **Keyspace Hits:** The number of successful key lookups (e.g., `123035`).
+* **Keyspace Misses:** The number of unsuccessful key lookups (e.g., `204112`).
+* **Command Rate:** the rate of commands.
+
+**Persistence:**
+
+* **RDB Last Save Time:** The timestamp of the last successful RDB save (e.g., `1740929943`).
+* **AOF Enabled:** Indicates whether Append Only File (AOF) persistence is enabled.
+* **AOF Last Rewrite Time Sec:** The time taken for the last AOF rewrite.
+* **AOF Delayed Fsyncs:** The number of delayed fsyncs.
+
+**Pub/Sub:**
+
+* **Pub/Sub Channels:** The number of active Pub/Sub channels (e.g., `1`).
+* **Pub/Sub Patterns:** The number of active Pub/Sub patterns.
+
+**CPU:**
+
+* **Used CPU Sys:** The system CPU time used by Redis.
+* **Used CPU User:** The user CPU time used by Redis.
+* **Used CPU Sys Children:** System CPU time used by child processes.
+* **Used CPU User Children:** User CPU time used by child processes.
+* **Used CPU Sys Main Thread:** System CPU time used by the main Redis thread.
+* **Used CPU User Main Thread:** User CPU time used by the main Redis thread.
+
+You can navigate through different sections of the dashboard to view these specific metrics and analyze Redis performance trends over time. The application may also allow for configuration of metric refresh intervals, alert thresholds, and historical data visualization.
+
+## Example Metric Output (Cron Job)
+
+```json
+{
+  "metrics": {
+    "connections": {
+      "connected_clients": 43,
+      "connection_errors": 0,
+      "connection_rate": 10678,
+      "rejected_connections": 0
+    },
+    "memory_usage": {
+      "used_memory": 58228616,
+      "used_memory_peak": 93998152,
+      "memory_fragmentation_ratio": 1.12,
+      "evicted_keys": 0
+    },
+    "performance": {
+      "latency": 52.28090286254883,
+      "commands_per_second": 49,
+      "cache_hit_ratio": 37.608475700526064,
+      "total_commands_processed": 9214533,
+      "instantaneous_ops_per_sec": 49,
+      "keyspace_hits": 123035,
+      "keyspace_misses": 204112,
+      "command_rate": 0
+    },
+    "persistence": {
+      "rdb_last_save_time": 1740929943,
+      "aof_enabled": 0,
+      "aof_last_rewrite_time_sec": -1,
+      "aof_delayed_fsyncs": 0
+    },
+    "pubsub": {
+      "pubsub_channels": 1,
+      "pubsub_patterns": 0
+    },
+    "cpu": {
+      "cpu": {
+        "used_cpu_sys": 1202.740408,
+        "used_cpu_user": 649.445301,
+        "used_cpu_sys_children": 4.690431,
+        "used_cpu_user_children": 24.344181,
+        "used_cpu_sys_main_thread": 1200.038602,
+        "used_cpu_user_main_thread": 648.373896
+      }
+    }
+  }
+}
+```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
