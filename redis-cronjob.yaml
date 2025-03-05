@@ -13,6 +13,7 @@ spec:
           containers:
           - name: redis-metrics
             image: docker.io/owenmurphy2022v1/redis-metrics:latest # Replace with your docker image
+            imagePullPolicy: IfNotPresent
             env:
             - name: REDIS_URL
               valueFrom:
