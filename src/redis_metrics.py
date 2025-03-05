@@ -163,7 +163,7 @@ class RedisMetrics:
 
     def log_metrics(self):
         metrics = self._fetch_metrics()
-        self.logger.info({"message": "Redis Metrics", "metrics": metrics})
+        self.logger.info({"message": "Redis Metrics", "redis_metrics": metrics})
         # self._log_slow_log()
 
     def start(self):
