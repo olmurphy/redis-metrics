@@ -151,7 +151,9 @@ class RedisMetrics:
             }
         except redis.exceptions.RedisError as e:
             if self.logger:
-                self.logger.error({"message": "Error retrieving performance metrics:", "error": e})
+                self.logger.error(
+                    {"message": "Error retrieving performance metrics:", "error": e}
+                )
             return {}
 
     def _persistence_metrics(self, info: Dict[str, Any]) -> Dict[str, Any]:
