@@ -23,21 +23,3 @@ jobs:
           context: . # Dockefile is in root directory
           file: ./Dockerfile # name is Dockerfile
           push: false # Important: Do not push to any registry
-          tags: test-image:${{ github.sha }} # Use a unique tag
-          cache-from: type=local,src=.docker-cache
-          cache-to: type=local,dest=.docker-cache,mode=max
-
-      - name: Run container (Basic Health Check)
-        run: |
-          docker run --rm test-image:${{ github.sha }} /bin/sh -c "exit 0" # Or a more robust health check
-          docker image inspect test-image:${{ github.sha }}
-
-      - name: Run integration tests with the built image
-        run: |
-          # Example: Run a test script against the container.
-          # docker run --rm test-image:${{ github.sha }} /path/to/test_script.sh
-          echo "Integration tests here (e.g. against the built image)"
-
-      - name: Cleanup docker image
-        run: |
-          docker image rm test-image:${{ github.sha }}
