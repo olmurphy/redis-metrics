@@ -1,0 +1,43 @@
+name: Docker Image Build Test
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and Tag Docker image
+        id: docker_build
+        uses: docker/build-push-action@v5
+        with:
+          context: . # Dockefile is in root directory
+          file: ./Dockerfile # name is Dockerfile
+          push: false # Important: Do not push to any registry
+          tags: test-image:${{ github.sha }} # Use a unique tag
+          cache-from: type=local,src=.docker-cache
+          cache-to: type=local,dest=.docker-cache,mode=max
+
+      - name: Run container (Basic Health Check)
+        run: |
+          docker run --rm test-image:${{ github.sha }} /bin/sh -c "exit 0" # Or a more robust health check
+          docker image inspect test-image:${{ github.sha }}
+
+      - name: Optional: Run integration tests with the built image
+        run: |
+          # Example: Run a test script against the container.
+          # docker run --rm test-image:${{ github.sha }} /path/to/test_script.sh
+          echo "Integration tests here (e.g. against the built image)"
+
+      - name: Optional: Cleanup docker image
+        run: |
+          docker image rm test-image:${{ github.sha }}
