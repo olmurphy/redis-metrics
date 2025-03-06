@@ -47,5 +47,8 @@ if __name__ == "__main__":
         logger.error({"message": "Failed to run Redis Metrics", "error": e})
     except redis.exceptions.TimeoutError as e:
         logger.error(
-            {"message": "Redis connection timed out", "error": traceback.format_exc()}
+            {
+                "message": "Redis connection timed out",
+                "error": {"stack_track": traceback.format_exc(), "errorType": e},
+            }
         )
