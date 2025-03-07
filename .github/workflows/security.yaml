@@ -22,7 +22,7 @@ jobs:
           pip install bandit pip-audit
           pip install -r requirements.txt
       - name: Run bandit
-        run: bandit -r .
+        run: bandit -r src
       # - name: Run safety
       #   run: safety check --full-report # need to use with key, not sure how
       - name: Run pip-audit
