@@ -9,7 +9,7 @@ from src.redis_metrics import RedisMetrics
 class TestRedisConfig(unittest.TestCase):
 
     def setUp(self):
-        self.redis_url = "redis://user:password@localhost:6379/0"
+        self.redis_url = "test"
         self.redis_cert_path = "test_cert.pem"
         self.logger = MagicMock()
         self.config = RedisConfig(
