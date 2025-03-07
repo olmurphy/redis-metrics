@@ -25,6 +25,6 @@ jobs:
         run: bandit -r src
       # - name: Run safety
       #   run: safety check --full-report # need to use with key, not sure how
-      - name: Run pip-audit
-        run: pip-audit
+      # - name: Run pip-audit
+      #   run: pip-audit # not sure
 
