@@ -22,4 +22,5 @@ jobs:
           pip install safety
           pip install -r requirements.txt
       - name: Run safety
-        run: safety scan --key "${{ secrets.SAFETY_API_KEY}}"
+        
+        run: echo "${{ secrets.SAFETY_API_KEY }}"; safety scan --key "${{ secrets.SAFETY_API_KEY}}"
