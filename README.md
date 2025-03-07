@@ -344,3 +344,27 @@ Project Link: [https://github.com/olmurphy/redis-metrics](https://github.com/olm
 TBD
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Project Strcuture
+
+```
+.
+├── .github/
+│   └── workflows - github define actions / workflows
+├── src/
+│   ├── app.py
+│   ├── logger.py
+│   ├── redis_config.py
+│   └── redis_metrics.py
+├── .dockerignore
+├── .gitignore
+├── Dockerfile
+├── LICENSE
+├── Makefile
+├── README.md
+├── redis-cronjob.yaml
+├── requirements.txt
+└── setup.cfg
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
