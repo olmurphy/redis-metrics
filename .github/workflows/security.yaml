@@ -1,0 +1,30 @@
+name: Security Scanning
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install bandit pip-audit
+          pip install -r requirements.txt
+      - name: Run bandit
+        run: bandit -r .
+      # - name: Run safety
+      #   run: safety check --full-report # need to use with key, not sure how
+      - name: Run pip-audit
+        run: pip-audit
+
