@@ -341,7 +341,7 @@ Project Link: [https://github.com/olmurphy/redis-metrics](https://github.com/olm
 
 ## Acknowledgments
 
-TBD
+LLM
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
