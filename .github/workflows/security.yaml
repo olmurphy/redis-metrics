@@ -22,4 +22,4 @@ jobs:
           pip install safety
           pip install -r requirements.txt
       - name: Run safety
-        run: safety scan --key "${{ secrets.SAFETY_API_KEY }}"
+        run: safety scan --full-report --json
